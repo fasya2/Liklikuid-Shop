@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LikLikuid</title>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+
+    <!-- fethers icon -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <!-- my sryle -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- alpine js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- app -->
+<script src="src/app.js" async></script>
+
+<!-- midtrans -->
+<script type="text/javascript"
+src="https://app.sandbox.midtrans.com/snap/snap.js"
+data-client-key="SB-Mid-client-Nugt2mByLOfj9QZC"></script>
+
+  </head>
+  <body>
+    <!-- navbar start -->
+    <nav class="navbar" x-data>
+      <a href="#" class="navbar-logo">LikLikuid<span>Shop</span></a>
+      <nav>
+        <div class="navbar-nav">
+          <a href="#home">Home</a>
+          <a href="#about">About Us</a>
+          <a href="#collection">Collection</a>
+          <a href="#products">Produk</a>
+          <a href="#contact">Contact</a>
+      </nav>
+    </div>
+      <nav> 
+        <div class="navbar-extra">
+    <a href="#" id="search-button"
+    ><i data-feather="search"></i>
+  </a>
+    <a href="#" id="shopping-cart-button">
+      <i data-feather="shopping-cart"></i>
+      <span class="quantity-badge" x-show="$store.cart.quantity" x-text="$store.cart.quantity"></span>
+    </a>
+    <a href="#" id="hamburger-menu">
+      <i data-feather="menu"></i>
+    </a>
+    </div>
+  </nav>
+
+  <!-- search form start -->
+   <div class="search-form">
+    <input type="search" id="search-box" placeholder="search here...">
+    <label for="search-box"><i data-feather="search"></i></label>
+   </div>
+  <!-- search form end -->
+  <!-- shopping cart start -->
+  <div class="shopping-cart">
+    <template x-for="(item,index) in $store.cart.items" x-keys="index">
+      <div class="cart-item">
+        <img :src="`image/produk/${item.img}`" :alt="p1">
+        <div class="item-detail">
+          <h3 x-text="item.name"></h3>
+          <div class="item-price">
+            <span x-text="rupiah(item.price)"></span> &times;
+            <button id="remove" @click="$store.cart.remove(item.id)">&minus;</button>
+            <span x-text="item.quantity"></span>
+            <button id="add" @click="$store.cart.add(item)">&plus;</button> &equals;
+            <span x-text="rupiah(item.total)"></span>
+          </div>
+        </div>
+      </div>
+    </template>
+    <h4 x-show="!$store.cart.items.length" style="margin-top: 1rem;">CART IS EMPTY</h4>
+    <h4 x-show="$store.cart.items.length">TOTAL : <span x-text="rupiah($store.cart.total)"></span></h4>
+<div class="form-container" x-show="$store.cart.items.length">
+  <form action="" id="checkoutForm">
+    <input type="hidden" name="items" x-model="JSON.stringify($store.cart.items)">
+    <input type="hidden" name="total" x-model="$store.cart.total">
+    <h5>Costumer Detail</h5>
+    <label for="name">
+      <span>Name</span>
+      <input type="text" name="name" id="name">
+    </label>
+
+    <label for="email">
+      <span>Email</span>
+      <input type="text" name="email" id="email">
+    </label>
+
+    <label for="phone">
+      <span>Phone</span>
+      <input type="number" name="phone" id="phone" autocomplete="off">
+    </label>
+    <button class="checkout-button disabled" type="submit" id="checkout-button" value="checkout">Checkout</button>
+  </form>
+</div>
+
+  </div> 
+  <!-- shopping cart end -->
+  
+  <!-- navbar end -->
+</nav>
+
+<!-- Hero selection  start-->
+
+<section class="hero" id="home">
+  <main class="content">
+    <div>
+      <h1>Jadikan Harimu Lebih <span>Berasa</span></h1>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi, rem.</p>
+    </div>
+    <a href="#products" class="cta">Beli Sekarang</a>
+  </main>
+
+
+  
+</section>
+
+<!-- Hero selection  end-->
+
+
+<!-- about start -->
+ <section id="about" class="about">
+  <h2>Tentang <span>Kami</span></h2>
+  
+  <div class="row">
+    <div class="about-img">
+      <img src="image/background2.jpg" alt="Tentang Kami" width="600" height="auto">
+    </div>
+    <div class="content">
+      <h3>Kenapa Harus Di LikLikuid?</h3>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia laboriosam quod iure quis, dicta numquam?</p>
+      <p>Lorem ipsum dolor sit amet</p>
+    </div>
+  </div>
+  
+ </section>
+<!-- about end -->
+
+<!-- menu section start -->
+<section id="collection" class="collection">
+  <h2>Menu <span>Kami</span></h2>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius voluptatem quos quas modi corporis quam?</p>
+
+
+  <div class="row">
+    <div class="menu-card">
+      <img src="image/1.png" alt="nuttyrilla" class="menu-card-img">
+      <h3 class="menu-card-title">NUTTYRILLA</h3>
+      <P class="menu-card-price">IDR 130.000</P>
+    </div>
+    <div class="menu-card">
+      <img src="image/2.png" alt="jutajuice" class="menu-card-img">
+      <h3 class="menu-card-title">JUTA JUICE</h3>
+      <P class="menu-card-price">IDR 110.000</P>
+    </div>
+    <div class="menu-card">
+      <img src="image/3.png" alt="gorillajam" class="menu-card-img">
+      <h3 class="menu-card-title">GORILLA JAM</h3>
+      <P class="menu-card-price">IDR 140.000</P>
+    </div>
+    <div class="menu-card">
+      <img src="image/4.png" alt="foom" class="menu-card-img">
+      <h3 class="menu-card-title">FOOM ICED TEA</h3>
+      <P class="menu-card-price">IDR 110.000</P>
+    </div>
+    <div class="menu-card">
+      <img src="image/5.png" alt="oatdrips" class="menu-card-img">
+      <h3 class="menu-card-title">OAT DRIPS</h3>
+      <P class="menu-card-price">IDR 90.000</P>
+    </div>
+    <div class="menu-card">
+      <img src="image/6.png" alt="zigar" class="menu-card-img">
+      <h3 class="menu-card-title">ZIGAR</h3>
+      <P class="menu-card-price">IDR 100.000</P>
+    </div>
+    <div class="menu-card">
+      <img src="image/7.png" alt="upods" class="menu-card-img">
+      <h3 class="menu-card-title">UPODS</h3>
+      <P class="menu-card-price">IDR 110.000</P>
+    </div>
+    <div class="menu-card">
+      <img src="image/8.png" alt="susuper" class="menu-card-img">
+      <h3 class="menu-card-title">SUSUPER MARKET</h3>
+      <P class="menu-card-price">IDR 130.000</P>
+    </div>
+</div>
+  </section>
+  
+<!-- menu section end -->
+
+<!-- produk section start -->
+ <section class="products" id="products" x-data="products">
+  <h2><span>Produk</span> Kami</h2>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, distinctio?</p>
+
+  <div class="row">
+    <template x-for="(item,index) in items" x-key="index">
+      <div class="product-card">
+        <div class="product-icons">
+    <a href="#" @click.prevent="$store.cart.add(item)">
+      <svg
+  width="24"
+  height="24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <use href="image/feather-sprite.svg#shopping-cart" />
+</svg>
+    </a>
+      <a href="#" class="item-detail-button" @click.prevent="$item-detail-modal">
+        <svg
+        width="24"
+        height="24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <use href="image/feather-sprite.svg#eye" />
+      </svg>
+      </a>
+        </div>
+        <div class="product-image">
+          <img :src="`image/produk/${item.img}`" :alt="item.name">
+        </div>
+        <div class="product-content">
+          <h3 x-text="item.name"></h3>
+          <div class="product-stars">
+            <svg
+            width="24"
+            height="24"
+            fill="currentColor"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <use href="image/feather-sprite.svg#star" />
+          </svg>
+            <svg
+            width="24"
+            height="24"
+            fill="currentColor"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <use href="image/feather-sprite.svg#star" />
+          </svg>
+            <svg
+            width="24"
+            height="24"
+            fill="currentColor"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <use href="image/feather-sprite.svg#star" />
+          </svg>
+            <svg
+            width="24"
+            height="24"
+            fill="currentColor"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <use href="image/feather-sprite.svg#star" />
+          </svg>
+            <svg
+            width="24"
+            height="24"
+            fill="currentColor"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <use href="image/feather-sprite.svg#star" />
+          </svg>
+          </div>
+          <div class="product-price" x-text="rupiah(item.price)"></div>
+        </div>
+      </div>
+    </template>
+  </div>
+
+ </section>
+<!-- produk section end -->
+
+<!-- contact section start -->
+ <section id="contact" class="contact">
+  <h2>Kontak <span>Kami</span></h2>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius voluptatem quos quas modi corporis quam?</p>
+
+  <div class="row">
+    <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15862.064483934122!2d108.31594494756898!3d-6.327097820370123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6ebbfd289fe0a9%3A0xe9cd846c4e983a9e!2sTaman%20Cimanuk!5e0!3m2!1sid!2sid!4v1733302129384!5m2!1sid!2sid"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <form action="">
+      <div class="input-group">
+        <i data-feather="user"></i>
+        <input type="text" placeholder="nama">
+      </div>
+      <div class="input-group">
+        <i data-feather="mail"></i>
+        <input type="text" placeholder="email">
+      </div>
+      <div class="input-group">
+        <i data-feather="phone"></i>
+        <input type="text" placeholder="no hp">
+      </div>
+      <button type="submit" class="btn">
+        kirim pesan
+      </button>
+    </form>
+  </div>
+
+ </section>
+<!-- contact section end  -->
+
+<!-- footer start -->
+ <footer>
+  <div class="sosials">
+    <a href="#">
+      <i data-feather="instagram"></i>
+      <a href="#">
+        <i data-feather="facebook"></i>
+      </a>
+    </div>
+    </a>
+      <div class="links">
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#collection">Collection</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="credit">
+        <p>Created By <a href="">Fasya Septa
+       </a>. | &copy; 2024.</p>
+      </div>
+ </footer>
+<!-- footer end -->
+
+<!-- modal box item detail start -->
+ <div class="modal" id="item-detail-modal">
+  <div class="modal-container">
+    <a href="#" class="close-icon"><i data-feather="x"></i></a>
+    <div class="modal-content">
+<img src="image/produk/p1.png" alt="product 1">
+<div class="product-content">
+  <h3>PARADEWA ANGGUR ATHENA</h3>
+  <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore vel non modi mollitia eaque deleniti necessitatibus tempora voluptatum sequi rerum.</P>
+  <div class="product-stars">
+    <i data-feather="star" class="star"></i>
+    <i data-feather="star"class="star"></i>
+    <i data-feather="star"class="star"></i>
+    <i data-feather="star"class="star"></i>
+    <i data-feather="star"></i>
+  </div>
+  <div class="product-price">IDR 140K <span>150K</span></div>
+  <a href="#"><i data-feather="shopping-cart" class="add"></i><span>Add To Cart</span></a>
+</div>
+</div>
+</div>
+    </div>
+ <div class="modal" id="item-detail-modal2">
+  <div class="modal-container">
+    <a href="#" class="close-icon2"><i data-feather="x"></i></a>
+    <div class="modal-content">
+<img src="image/produk/p2.png" alt="product 1">
+<div class="product-content">
+  <h3>PARADEWA ANGGUR SALT</h3>
+  <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore vel non modi mollitia eaque deleniti necessitatibus tempora voluptatum sequi rerum.</P>
+  <div class="product-stars">
+    <i data-feather="star" class="star"></i>
+    <i data-feather="star"class="star"></i>
+    <i data-feather="star"class="star"></i>
+    <i data-feather="star"class=></i>
+    <i data-feather="star"></i>
+  </div>
+  <div class="product-price">IDR 140K <span>150K</span></div>
+  <a href="#"><i data-feather="shopping-cart" class="add"></i><span>Add To Cart</span></a>
+</div>
+</div>
+</div>
+    </div>
+ <div class="modal" id="item-detail-modal3">
+  <div class="modal-container">
+    <a href="#" class="close-icon3"><i data-feather="x"></i></a>
+    <div class="modal-content">
+<img src="image/produk/p3.png" alt="product 1">
+<div class="product-content">
+  <h3>PARADEWA APEL ZEUS</h3>
+  <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore vel non modi mollitia eaque deleniti necessitatibus tempora voluptatum sequi rerum.</P>
+  <div class="product-stars">
+    <i data-feather="star" class="star"></i>
+    <i data-feather="star"class="star"></i>
+    <i data-feather="star"class="star"></i>
+    <i data-feather="star"class="star"></i>
+    <i data-feather="star"></i>
+  </div>
+  <div class="product-price">IDR 140K <span>150K</span></div>
+  <a href="#"><i data-feather="shopping-cart" class="add"></i><span>Add To Cart</span></a>
+</div>
+</div>
+</div>
+    </div>
+ <div class="modal" id="item-detail-modal4">
+  <div class="modal-container">
+    <a href="#" class="close-icon4"><i data-feather="x"></i></a>
+    <div class="modal-content">
+<img src="image/produk/p4.png" alt="product 1">
+<div class="product-content">
+  <h3>PARADEWA CHOCOLOKI</h3>
+  <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore vel non modi mollitia eaque deleniti necessitatibus tempora voluptatum sequi rerum.</P>
+  <div class="product-stars">
+    <i data-feather="star" class="star"></i>
+    <i data-feather="star"class="star"></i>
+    <i data-feather="star"class="star"></i>
+    <i data-feather="star"></i>
+    <i data-feather="star"></i>
+  </div>
+  <div class="product-price">IDR 140K <span>150K</span></div>
+  <a href="#"><i data-feather="shopping-cart" class="add"></i><span>Add To Cart</span></a>
+</div>
+</div>
+</div>
+    </div>
+ <div class="modal" id="item-detail-modal5">
+  <div class="modal-container">
+    <a href="#" class="close-icon5"><i data-feather="x"></i></a>
+    <div class="modal-content">
+<img src="image/produk/p5.png" alt="product 1">
+<div class="product-content">
+  <h3>PARADEWA CHOCOLOKI PODS FRENDLY</h3>
+  <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore vel non modi mollitia eaque deleniti necessitatibus tempora voluptatum sequi rerum.</P>
+  <div class="product-stars">
+    <i data-feather="star" class="star"></i>
+    <i data-feather="star"class="star"></i>
+    <i data-feather="star"class="star"></i>
+    <i data-feather="star"class=""></i>
+    <i data-feather="star"></i>
+  </div>
+  <div class="product-price">IDR 140K <span>150K</span></div>
+  <a href="#"><i data-feather="shopping-cart" class="add"></i><span>Add To Cart</span></a>
+</div>
+</div>
+</div>
+    </div>
+ <div class="modal" id="item-detail-modal6">
+  <div class="modal-container">
+    <a href="#" class="close-icon6"><i data-feather="x"></i></a>
+    <div class="modal-content">
+<img src="image/produk/p6.png" alt="product 1">
+<div class="product-content">
+  <h3>PARADEWA CHOCOLOKI SALT</h3>
+  <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore vel non modi mollitia eaque deleniti necessitatibus tempora voluptatum sequi rerum.</P>
+  <div class="product-stars">
+    <i data-feather="star" class="star"></i>
+    <i data-feather="star"class="star"></i>
+    <i data-feather="star"class="star"></i>
+    <i data-feather="star"class=""></i>
+    <i data-feather="star"></i>
+  </div>
+  <div class="product-price">IDR 140K <span>150K</span></div>
+  <a href="#"><i data-feather="shopping-cart" class="add"></i><span>Add To Cart</span></a>
+</div>
+</div>
+</div>
+    </div>
+ <div class="modal" id="item-detail-modal7">
+  <div class="modal-container">
+    <a href="#" class="close-icon7"><i data-feather="x"></i></a>
+    <div class="modal-content">
+<img src="image/produk/p7.png" alt="product 1">
+<div class="product-content">
+  <h3>PARADEWA MANGGAHERA</h3>
+  <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore vel non modi mollitia eaque deleniti necessitatibus tempora voluptatum sequi rerum.</P>
+  <div class="product-stars">
+    <i data-feather="star" class="star"></i>
+    <i data-feather="star"class="star"></i>
+    <i data-feather="star"class="star"></i>
+    <i data-feather="star"class="star"></i>
+    <i data-feather="star"></i>
+  </div>
+  <div class="product-price">IDR 140K <span>150K</span></div>
+  <a href="#"><i data-feather="shopping-cart" class="add"></i><span>Add To Cart</span></a>
+</div>
+</div>
+</div>
+    </div>
+ <div class="modal" id="item-detail-modal8">
+  <div class="modal-container">
+    <a href="#" class="close-icon8"><i data-feather="x"></i></a>
+    <div class="modal-content">
+<img src="image/produk/p8.png" alt="product 1">
+<div class="product-content">
+  <h3>PARADEWA MANGGAHERA SALT</h3>
+  <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore vel non modi mollitia eaque deleniti necessitatibus tempora voluptatum sequi rerum.</P>
+  <div class="product-stars">
+    <i data-feather="star" class="star"></i>
+    <i data-feather="star"class="star"></i>
+    <i data-feather="star"class="star"></i>
+    <i data-feather="star"class="star"></i>
+    <i data-feather="star"></i>
+  </div>
+  <div class="product-price">IDR 140K <span>150K</span></div>
+  <a href="#"><i data-feather="shopping-cart" class="add"></i><span>Add To Cart</span></a>
+</div>
+</div>
+</div>
+    </div>
+<!-- modal box item detail end -->
+
+<!-- feather icons -->
+    <script>
+      feather.replace();
+    </script>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
